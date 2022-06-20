@@ -3,6 +3,7 @@ import { Alert } from "react-native";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { useDB } from "../context";
+// import { AdMobInterstitial, AdMobRewarded } from "expo-ads-admob";
 
 const Container = styled.View`
   background-color: ${colors.bgColor};
@@ -60,7 +61,7 @@ const Write = ({ navigation: { goBack } }) => {
   const [feelings, setFeelings] = useState("");
   const onChangeText = (text) => setFeelings(text);
   const onEmotionPress = (face) => setEmotion(face);
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (feelings === "") {
       return Alert.alert("Please complete form.");
     }
@@ -74,6 +75,21 @@ const Write = ({ navigation: { goBack } }) => {
         message: feelings,
       });
     });
+    // await AdMobRewarded.setAdUnitID("ca-app-pub-3940256099942544/5224354917");
+    // await AdMobRewarded.requestAdAsync();
+    // await AdMobRewarded.showAdAsync();
+    // AdMobRewarded.addEventListener("rewardedVideoUserDidEarnReward", () => {
+    //   AdMobRewarded.addEventListener("rewardedVideoDidDismiss", () => {
+    //     realm.write(() => {
+    //       realm.create("Feeling", {
+    //         _id: Date.now(),
+    //         emotion: selectedEmotion,
+    //         message: feelings,
+    //       });
+    //     });
+    //     goBack();
+    //   });
+    // });
     goBack();
   };
   return (
